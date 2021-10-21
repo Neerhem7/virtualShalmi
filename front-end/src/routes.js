@@ -42,13 +42,24 @@ const User = React.lazy(() => import('./views/users/User'));
 const Product = React.lazy(()=> import('./views/products/AllProduct'));
 const AddProduct = React.lazy(()=> import('./views/products/addProducts/AddProduct'));
 const Order = React.lazy(()=> import('./views/order/Order'));
-const Review = React.lazy(()=> import('./views/reviews/VendorReviews'));
+const DetailOrder = React.lazy(()=> import('./views/order/DetailOrder'));
+
+const Customer = React.lazy(()=> import('./views/customer/Customer'));
+const Review = React.lazy(()=> import('./views/reviews/Reviews'));
+const VisitStore = React.lazy(()=> import('./views/store/MyStore'));
+const MyAccount = React.lazy(()=> import('./views/account/Account'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/product/addproduct', name: 'Add Product', component: AddProduct},
   { path: '/product', name: 'Product', component: Product},
   { path: '/order', name: 'Order', component: Order},
+  { path: '/detailorder', exact: true,name: 'Detail Order', component: DetailOrder},
+  { path: '/customer', name: 'Customer', component: Customer},
+  
   { path: '/review', name: 'Review', component: Review},
+  { path: '/visitstore', name: 'VisitStore', component: VisitStore},
+    { path: '/myaccount', name: 'MyAccount', component: MyAccount},
+
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },

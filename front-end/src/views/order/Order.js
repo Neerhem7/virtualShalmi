@@ -121,15 +121,15 @@ const Order = () => {
                       <CBadge color={getBadge(item.status)}>
                         {item.status}
                       </CBadge>
+                      
                     </td>
                   ),
                 action: ()=>(
                 <td>
                   
                   <CButtonGroup>
-              <CButton color="secondary"><CIcon name="cil-lightbulb" /></CButton>
-              <CButton color="primary"><CIcon name="cil-pencil" /></CButton>
-              <CButton color="danger"><CIcon name="cil-trash" /></CButton>
+              <Link  to='/detailorder'><CButton color="secondary"><CIcon name="cil-lightbulb" /></CButton></Link>
+      
             </CButtonGroup>
 
           

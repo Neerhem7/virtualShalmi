@@ -1,6 +1,6 @@
 import React from 'react'
 
-const VendorReviews = () => {
+const Reviews = () => {
     return (
         <div>
             Reviews
@@ -8,4 +8,4 @@ const VendorReviews = () => {
     )
 }
 
-export default VendorReviews
+export default Reviews

@@ -126,18 +126,11 @@ const AddProduct = () => {
             
           </CCard>
           <CCard>
-            <CCardHeader>              
-              <CFormGroup row>
-                  <CCol tag="label" sm="3" className="col-form-label">
-                    On Sale
-                  </CCol>
-                  <CCol sm="9">
-                    <CSwitch
-                      className="mr-1"
-                      color="success"
-                    />
-                  </CCol>
-                </CFormGroup>
+          <CCardHeader>
+              On Sale
+              <div className="card-header-actions">
+                <CSwitch className={'float-right mb-0'} color={'info'} defaultChecked size={'sm'} tabIndex="0" />
+              </div>
             </CCardHeader>
             <CCardBody>
             <CFormGroup row>
