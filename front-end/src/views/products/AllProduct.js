@@ -11,7 +11,7 @@ import {
   CButtonGroup,
 } from "@coreui/react";
 import CIcon from '@coreui/icons-react'
-
+import {Link} from 'react-router-dom';
 import usersData from "../users/UsersData";
 
 const getBadge = (status) => {
@@ -38,7 +38,8 @@ const AllProduct = () => {
       
           <CRow className="align-items-center mt-2">
             <CCol col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <CButton
+             
+                <CButton
                 active
                 block
                 shape="square"
@@ -47,6 +48,7 @@ const AllProduct = () => {
               >
                 All()
               </CButton>
+            
             </CCol>
 
             <CCol col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
@@ -95,7 +97,7 @@ const AllProduct = () => {
             </CCol>
 
             <CCol col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <CButton
+            <Link to="/product/addproduct"><CButton
                 active
                 block
                 shape="square"
@@ -103,7 +105,7 @@ const AllProduct = () => {
                 aria-pressed="true"
               >
                 Add Product
-              </CButton>
+              </CButton></Link>
             </CCol>
           </CRow>
         </CCardBody>

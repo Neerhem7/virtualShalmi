@@ -42,12 +42,13 @@ const User = React.lazy(() => import('./views/users/User'));
 const Product = React.lazy(()=> import('./views/products/AllProduct'));
 const AddProduct = React.lazy(()=> import('./views/products/addProducts/AddProduct'));
 const Order = React.lazy(()=> import('./views/order/Order'));
+const Review = React.lazy(()=> import('./views/reviews/VendorReviews'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/product/addproduct', name: 'Add Product', component: AddProduct},
   { path: '/product', name: 'Product', component: Product},
   { path: '/order', name: 'Order', component: Order},
-
+  { path: '/review', name: 'Review', component: Review},
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },

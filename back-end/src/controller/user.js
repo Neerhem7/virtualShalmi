@@ -2,7 +2,10 @@ const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendmail = require('@sendgrid/mail');
-const cryptojs = require('crypto-js');
+const crypto = require('crypto');
+var nodemailer = require('nodemailer');
+
+
 
 exports.signup = async (req, res)=>{
     const {name, email, phoneNumber, password, cpassword, role, emailToken, isVerified}= req.body;
@@ -19,8 +22,33 @@ exports.signup = async (req, res)=>{
         }
         
         
+       const verifycode= Math.floor(100000 + Math.random() * 900000);
+      
+    
+
+        var transporter = nodemailer.createTransport({
+         service: 'gmail',
+         auth: {
+                user: 'sp18-bse-117@cuilahore.edu.pk',
+                pass: 'mehr2000'
+            }
+        });
+        const mailOptions = {
+          from: 'sp18-bse-117@cuilahore.edu.pk', // sender address
+          to: email, // list of receivers
+          subject: 'Verify the User', // Subject line
+          html: `<p>Thanks You For verification :: ${verifycode} </p>`// plain text body
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+           if(err)
+             console.log(err)
+           else
+             console.log(info);
+        });
+
+
         console.log('check mail');
-        const user= new User({name, email, phoneNumber, password, role});
+        const user= new User({name, email, phoneNumber, password, role,verify:verifycode});
 
         await user.save()
         return res.status(201).json({message: "Succesfully registered"});

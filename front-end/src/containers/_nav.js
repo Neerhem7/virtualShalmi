@@ -28,23 +28,16 @@ const _nav =  [
     ],
   },
   {
-    _tag: 'CSidebarNavDropdown',
+    _tag: 'CSidebarNavItem',
     name: 'Order',
-    route: '/',
-    icon: 'cil-basket',
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Order',
-        to: '/order',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Add Product',
-        to: '/product/addproduct',
-      },
-      
-    ],
+    to: '/order',
+    icon: 'cis-cart'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Reviews',
+    to: '/review',
+    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
   },
  ]
 
