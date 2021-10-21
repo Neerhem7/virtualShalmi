@@ -28,7 +28,7 @@ const getBadge = (status) => {
       return "primary";
   }
 };
-const fields = ["Image", "name", "SKU", "Price","Earning","date", "status", "action"];
+const fields = ["Order No", "Order","Date","status","ship to","Total", "action"];
 
 const Order = () => {
   return (
