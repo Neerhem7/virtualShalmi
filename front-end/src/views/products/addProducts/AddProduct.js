@@ -135,7 +135,7 @@ const AddProduct = () => {
             <CCardBody>
             <CFormGroup row>
                   <CCol md="3">
-                    <CLabel htmlFor="saleprice-input">Regular Price (Rs)</CLabel>
+                    <CLabel htmlFor="saleprice-input">Sale Price (Rs)</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
                     <CInput type="number" id="saleprice" name="saleprice" placeholder="Enter Sale Price" />

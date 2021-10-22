@@ -10,7 +10,7 @@ const loading = (
 
 // Containers
 const TheLayout = React.lazy(() => import("./containers/TheLayout"));
-
+const AdminLayout = React.lazy(() => import("./admin/adminContainers/AdminLayout"));
 // Pages
 const Home = React.lazy(() => import("./views/pages/home/Home"));
 const Login = React.lazy(() => import("./views/pages/login/Login"));
@@ -58,6 +58,11 @@ class App extends Component {
               path="/"
               name="Dashboard"
               render={(props) => <TheLayout {...props} />}
+            />
+             <Route
+              path="/"
+              name="AdminDashboard"
+              render={(props) => <AdminLayout {...props} />}
             />
           </Switch>
         </React.Suspense>
