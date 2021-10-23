@@ -14,13 +14,13 @@ import {
 import CIcon from '@coreui/icons-react'
 
 // routes config
-import routes from '../routes'
+import routes from '../../routes/vendorRoutes'
 
 import { 
-  TheHeaderDropdown
+  VendorHeaderDropdown
 }  from './index'
 
-const TheHeader = () => {
+const VendorHeader = () => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 
@@ -57,7 +57,7 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        <TheHeaderDropdown/>
+        <VendorHeaderDropdown/>
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
@@ -84,4 +84,4 @@ const TheHeader = () => {
   )
 }
 
-export default TheHeader
+export default VendorHeader

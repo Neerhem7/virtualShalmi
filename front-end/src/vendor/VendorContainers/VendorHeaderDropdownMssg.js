@@ -9,7 +9,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-const TheHeaderDropdownMssg = () => {
+const VendorHeaderDropdownMssg = () => {
   const itemsCount = 4
   return (
     <CDropdown
@@ -124,4 +124,4 @@ const TheHeaderDropdownMssg = () => {
   )
 }
 
-export default TheHeaderDropdownMssg
+export default VendorHeaderDropdownMssg

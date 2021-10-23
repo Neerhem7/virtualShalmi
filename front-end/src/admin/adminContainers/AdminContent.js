@@ -7,7 +7,7 @@ import {
 import { CContainer, CFade } from '@coreui/react'
 
 // routes config
-import routes from '../adminroutes'
+import routes from '../../routes/adminRoutes'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -35,7 +35,7 @@ const AdminContent = () => {
                   )} />
               )
             })}
-            <Redirect from="/" to="/admindashboard" />
+            <Redirect from="/admin" to="/admindashboard" />
           </Switch>
         </Suspense>
       </CContainer>

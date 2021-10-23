@@ -13,7 +13,7 @@ import {
 } from "@coreui/react";
 import CIcon from '@coreui/icons-react'
 import {Link} from 'react-router-dom';
-import usersData from "../users/UsersData";
+import usersData from "../../../views/users/UsersData";
 
 const getBadge = (status) => {
   switch (status) {

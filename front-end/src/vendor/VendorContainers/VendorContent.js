@@ -7,7 +7,7 @@ import {
 import { CContainer, CFade } from '@coreui/react'
 
 // routes config
-import routes from '../routes'
+import routes from '../../routes/vendorRoutes'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -15,7 +15,7 @@ const loading = (
   </div>
 )
 
-const TheContent = () => {
+const VendorContent = () => {
   return (
     <main className="c-main">
       <CContainer fluid>
@@ -43,4 +43,4 @@ const TheContent = () => {
   )
 }
 
-export default React.memo(TheContent)
+export default React.memo(VendorContent)

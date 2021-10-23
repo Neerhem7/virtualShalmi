@@ -1,25 +1,25 @@
 import React from 'react'
 import {
-  TheContent,
-  TheSidebar,
-  TheFooter,
-  TheHeader
+  VendorContent,
+  VendorSidebar,
+  VendorFooter,
+  VendorHeader
 } from './index'
 
-const TheLayout = () => {
+const VendorLayout = () => {
 
   return (
     <div className="c-app c-default-layout">
-      <TheSidebar/>
+      <VendorSidebar/>
       <div className="c-wrapper">
-        <TheHeader/>
+        <VendorHeader/>
         <div className="c-body">
-          <TheContent/>
+          <VendorContent/>
         </div>
-        <TheFooter/>
+        <VendorFooter/>
       </div>
     </div>
   )
 }
 
-export default TheLayout
+export default VendorLayout

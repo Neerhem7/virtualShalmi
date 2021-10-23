@@ -14,10 +14,10 @@ import {
 import CIcon from '@coreui/icons-react'
 
 // routes config
-import routes from '../routes'
+import routes  from '../../routes/adminRoutes'
 
 import { 
-  TheHeaderDropdown
+  AdminHeaderDropdowm
 }  from './index'
 
 const AdminHeader = () => {
@@ -57,7 +57,7 @@ const AdminHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        <TheHeaderDropdown/>
+        <AdminHeaderDropdowm/>
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">

@@ -1,22 +1,22 @@
 import React from 'react'
 import {
-  TheContent,
-  TheSidebar,
-  TheFooter,
-  TheHeader
-} from './index'
+  AdminHeader,
+  AdminContent,
+  AdminSidebar,
+  AdminFooter
+} from '../adminContainers/index'
 
 const AdminLayout = () => {
 
   return (
     <div className="c-app c-default-layout">
-      <TheSidebar/>
+      <AdminSidebar/>
       <div className="c-wrapper">
-        <TheHeader/>
+        <AdminHeader/>
         <div className="c-body">
-          <TheContent/>
+          <AdminContent/>
         </div>
-       
+        <AdminFooter/>
       </div>
     </div>
   )
