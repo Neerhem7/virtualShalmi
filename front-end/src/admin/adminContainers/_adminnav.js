@@ -8,6 +8,12 @@ const _adminnav =  [
     to: '/admindashboard',
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
   },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Vendor',
+    to: '/admindashboardvendor',
+    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+  },
  ]
 
 export default _adminnav
