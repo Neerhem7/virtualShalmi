@@ -5,13 +5,38 @@ const _adminnav =  [
   {
     _tag: 'CSidebarNavItem',
     name: 'Dashboard',
-    to: '/admindashboard',
+    to: '/vendor',
+    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Products',
+    route: '/product',
+    icon: 'cil-basket',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Retailers',
+        to: '/retailer',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Add Product',
+        to: '/product/addproduct',
+      },
+      
+    ],
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Dashboard',
+    to: '/adminvendor',
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Vendor',
-    to: '/admindashboardvendor',
+    to: '/vendor',
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
   },
  ]

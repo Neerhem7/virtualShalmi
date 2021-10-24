@@ -35,6 +35,7 @@ const Widgets = React.lazy(() => import('../views/widgets/Widgets'));
 const Users = React.lazy(() => import('../views/users/Users'));
 const User = React.lazy(() => import('../views/users/User'));
 
+//const Vendor= React.lazy(()=> import('../admin/adminViews/vendors/Vendor'))
 
 const Product = React.lazy(()=> import('../views/products/AllProduct'));
 const AddProduct = React.lazy(()=> import('../views/products/addProducts/AddProduct'));
@@ -51,14 +52,15 @@ const vendorRoutes = [
   { path: '/product', name: 'Product', component: Product},
   { path: '/order', name: 'Order', component: Order},
   { path: '/detailorder', exact: true,name: 'Detail Order', component: DetailOrder},
-  { path: '/customer', name: 'Customer', component: Customer},
-  
+  { path: '/customer', name: 'Customer', component: Customer}, 
   { path: '/review', name: 'Review', component: Review},
   { path: '/visitstore', name: 'VisitStore', component: VisitStore},
     { path: '/myaccount', name: 'MyAccount', component: MyAccount},
 
 
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+   // { path: '/vendor', name: 'Vendor', component: Vendor},
+
+  { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { AdminContent } from "./admin/adminContainers";
+import AdminDashboard from "./admin/adminViews/dashboard/AdminDashboard";
+import Vendor from "./admin/adminViews/vendors/Vendor";
 import "./scss/style.scss";
 
 const loading = (
@@ -54,14 +57,15 @@ class App extends Component {
               name="Page 500"
               render={(props) => <Page500 {...props} />}
             />
+          
             <Route
-              exact
+              
               path="/admindashboard"
               name="AdminDashboard"
               render={(props) => <AdminLayout {...props} />}
             />
             <Route
-              path="/dashboard"
+              path="/"
               name="VendorDashboard"
               render={(props) => <VendorLayout {...props} />}
             />

@@ -7,7 +7,7 @@ import {
 import { CContainer, CFade } from '@coreui/react'
 
 // routes config
-import routes from '../../routes/adminRoutes'
+import adminRoutes from '../../routes/adminRoutes'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -21,21 +21,22 @@ const AdminContent = () => {
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
-            {routes.map((route, idx) => {
-              return route.component && (
+            {adminRoutes.map((adminroute, idx) => {
+              return adminroute.component && (
                 <Route
                   key={idx}
-                  path={route.path}
-                  exact={route.exact}
-                  name={route.name}
+                  path={adminroute.path}
+                  exact={adminroute.exact}
+                  name={adminroute.name}
                   render={props => (
                     <CFade>
-                      <route.component {...props} />
+                      <adminroute.component {...props}  />
                     </CFade>
                   )} />
+                 
               )
-            })}
-            <Redirect from="/admin" to="/admindashboard" />
+            })}      
+            <Redirect from="/" to="/admindashboard" />
           </Switch>
         </Suspense>
       </CContainer>

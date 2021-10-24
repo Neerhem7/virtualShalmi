@@ -14,7 +14,7 @@ const AdminLayout = () => {
       <div className="c-wrapper">
         <AdminHeader/>
         <div className="c-body">
-          <AdminContent/>
+          <AdminContent />
         </div>
         <AdminFooter/>
       </div>
