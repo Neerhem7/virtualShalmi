@@ -17,7 +17,7 @@ const _adminnav =  [
       {
         _tag: 'CSidebarNavItem',
         name: 'Retailers',
-        to: '/retailer',
+        to: '/adminretailer',
       },
       {
         _tag: 'CSidebarNavItem',
