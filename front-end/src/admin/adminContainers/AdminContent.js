@@ -36,7 +36,7 @@ const AdminContent = () => {
                  
               )
             })}      
-            <Redirect from="/" to="/admindashboard" />
+            {/* <Redirect from="/" to="/admindashboard" /> */}
           </Switch>
         </Suspense>
       </CContainer>

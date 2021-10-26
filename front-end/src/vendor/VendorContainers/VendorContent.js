@@ -22,7 +22,7 @@ const VendorContent = () => {
         <Suspense fallback={loading}>
           <Switch>
             {routes.map((route, idx) => {
-              return route.component && (
+              return route.component ? (
                 <Route
                   key={idx}
                   path={route.path}
@@ -33,9 +33,9 @@ const VendorContent = () => {
                       <route.component {...props} />
                     </CFade>
                   )} />
-              )
+              ) : (null);
             })}
-            <Redirect from="/" to="/dashboard" />
+            {/* <Redirect from="/" to="/dashboard" /> */}
           </Switch>
         </Suspense>
       </CContainer>

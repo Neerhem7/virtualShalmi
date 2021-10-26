@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AdminContent } from "./admin/adminContainers";
-import AdminDashboard from "./admin/adminViews/dashboard/AdminDashboard";
+import adminroute from "./routes/adminRoutes";
+import vendorroute from "./routes/vendorRoutes";
 import Vendor from "./admin/adminViews/vendors/Vendor";
 import "./scss/style.scss";
 
@@ -27,12 +28,12 @@ class App extends Component {
       <BrowserRouter>
         <React.Suspense fallback={loading}>
           <Switch>
-            <Route
+            {/* <Route
               exact
               path="/"
               name="Home Page"
               render={(props) => <Home {...props} />}
-            />
+            /> */}
             <Route
               exact
               path="/login"
@@ -57,18 +58,52 @@ class App extends Component {
               name="Page 500"
               render={(props) => <Page500 {...props} />}
             />
-          
-            <Route
-              
+           
+           <Route
               path="/admindashboard"
-              name="AdminDashboard"
+              
+              name="VendorDashboard"
               render={(props) => <AdminLayout {...props} />}
-            />
+            /> 
+              <Route
+              path="/adminvendor"
+              
+              name="VendorDashboard"
+              render={(props) => <AdminLayout {...props} />}
+            /> 
             <Route
-              path="/"
+              path="/adminretailer"
+              
+              name="VendorDashboard"
+              render={(props) => <AdminLayout {...props} />}
+            /> 
+            <Route
+              path="/dashboard"
+              
               name="VendorDashboard"
               render={(props) => <VendorLayout {...props} />}
-            />
+            /> 
+            <Route
+              path="/visitstore"
+              
+              name="VendorDashboard"
+              render={(props) => <VendorLayout {...props} />}
+            /> 
+            {/* <Route  
+            
+            path="/"
+            render={(props)=>{
+              console.log(props)
+              if(props.location.pathname=="/adminvender" )
+              return   <AdminLayout {...props}/>
+
+
+            }}
+            
+            
+            /> */}
+           
+            
              
           </Switch>
         </React.Suspense>
