@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
-
-const DB="mongodb+srv://mehr:mehr2000@cluster0.meawe.mongodb.net/virtualshalmi?retryWrites=true&w=majority";
+// mongodb+srv://mehr:2000@cluster0.meawe.mongodb.net/virtualshalmi?retryWrites=true&w=majority
+const DB="mongodb+srv://mehr:mehr2000@cluster0.meawe.mongodb.net/VirtualShalmi?retryWrites=true&w=majority";
 mongoose.connect(DB,{
     
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true
 }).then(()=>{
     console.log(`connect`)
 }).catch((err)=>{

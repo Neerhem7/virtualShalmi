@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import sidebar_items from './VendorSidebarRoute.json'
-import './vendorSidebar.css'
+import sidebar_items from './RetailerSidebarRoute.json'
+import './retailersidebar.css'
 const SidebarItem = (props) => {
 
     const active = props.active ? 'active' : ''
 
     return (
-        <div className="vsidebar__item">
-            <div className={`vsidebar__item-inner ${active}`}>
+        <div className="rsidebar__item">
+            <div className={`rsidebar__item-inner ${active}`}>
                 <i className={props.icon}></i>
                 <span>
                     {props.title}
@@ -18,12 +18,11 @@ const SidebarItem = (props) => {
     )
 }
 
-const VendorSidebar = (props) => {
+const RetailerSidebar = (props) => {
     const activeItem = sidebar_items.findIndex(item => item.route === props.location.pathname)
     return (
-        <div className='vsidebar'>
-            <div className="vsidebar__logo">
-                Virtual Shalmi
+        <div className='rsidebar'>
+            <div className="rsidebar__logo">
                 {/* <img src={logo} alt="company logo" /> */}
             </div>
             {
@@ -40,4 +39,4 @@ const VendorSidebar = (props) => {
         </div>)
 }
 
-export default VendorSidebar
+export default RetailerSidebar

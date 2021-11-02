@@ -6,4 +6,3 @@ const { adminMiddleware , requireSignin} = require('../middlewares/index');
 router.post('/addCategory',requireSignin,adminMiddleware, addCategory);
 router.get('/getCategory',getCategory);
 module.exports = router;
-

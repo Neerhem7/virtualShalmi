@@ -1,17 +1,47 @@
 [
     {
         "display_name": "Dashboard",
-        "route": "/vendor",
-        "icon": "bx bx-category-alt"
+        "route": "/vendor/dashboard",
+        "icon":"zmdi zmdi-view-dashboard zmdi-hc-lg"
+    },
+    {
+        "display_name": "Product",
+        "route": "/vendor/product",
+        "icon":"zmdi zmdi-shopping-basket zmdi-hc-lg"
     },
     {
         "display_name": "Order",
-        "route": "/order",
-        "icon": "bx bx-user-pin"
+        "route": "/vendor/order",
+        "icon":"zmdi zmdi-shopping-cart-plus zmdi-hc-lg"
     },
     {
-        "display_name": "Products",
-        "route": "/products",
-        "icon": "bx bx-package"
+        "display_name": "Withdraw",
+        "route": "/vendor/withdraw",
+        "icon":"zmdi zmdi-money-box zmdi-hc-lg"
+    },
+    {
+        "display_name": "Customer",
+        "route": "/vendor/customer",
+        "icon":"zmdi zmdi-accounts zmdi-hc-lg"
+    },
+    {
+        "display_name": "Review",
+        "route": "/vendor/review",
+        "icon":"zmdi zmdi-comments zmdi-hc-lg"
+    },
+    {
+        "display_name": "Visit Store",
+        "route": "/vendor/visitstore",
+        "icon":"zmdi zmdi-store zmdi-hc-lg"
+    },
+    {
+        "display_name": "Setting",
+        "route": "/vendor/setting",
+        "icon":"zmdi zmdi-settings zmdi-hc-lg"
+    },
+    {
+        "display_name": "Logout",
+        "route": "/",
+        "icon":"zmdi zmdi-lock zmdi-hc-lg"
     }
 ]

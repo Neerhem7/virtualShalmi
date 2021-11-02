@@ -1,58 +1,55 @@
-.vsidebar {
+.rsidebar {
     min-width: var(--sidebar-width);
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    background-color: var(--primary-color);
+    background-color: var(--main-bg);
     box-shadow: var(--box-shadow);
-    color: white;
-    font-weight: lighter;
-    font-size: 14px;
 }
 
-.vsidebar__logo {
-    height: 60px;
+.rsidebar__logo {
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.vsidebar__logo > img {
+.rsidebar__logo > img {
     height: 45px;
 }
 
-.vsidebar__item {
-    padding: 0 0px;
+.rsidebar__item {
+    padding: 0 20px;
 }
 
-.vsidebar__item-inner {
+.rsidebar__item-inner {
     padding: 15px 25px;
     display: flex;
     align-items: center;
-    font-weight: lighter;
+    font-weight: 600;
     transition: color 0.3s ease 0s;
 }
 
-.vsidebar__item-inner > i {
+.rsidebar__item-inner > i {
     margin-right: 10px;
     font-size: 1.5rem;
 }
 
-.vsidebar__item-inner > span {
+.rsidebar__item-inner > span {
     text-transform: capitalize;
 }
 
-.sidebar__item-inner:hover {
-    background-color: white;
+.rsidebar__item-inner:hover {
+    color: var(--main-color);
 }
 
-.vsidebar__item-inner.active {
-    /* border-radius: var(--border-radius); */
+.rsidebar__item-inner.active {
+    border-radius: var(--border-radius);
     background-image: linear-gradient(
         to right,
-        var(--third-color),
-        var(--third-color)
+        var(--main-color),
+        var(--second-color)
     );
     color: var(--txt-white);
 }

@@ -1,0 +1,28 @@
+.btn-primary {
+    color: #fff;
+    background-color: var(--third-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.icon_img{
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2rem;
+}
+
+.new{
+    text-align: center;
+    
+}
+@media screen and (max-width: 480px) {
+    .right-login{
+        background-color: var(--second-bg);
+      
+        margin: 2px;
+    }
+    /* .links{
+        display: none;
+    } */
+    hr{
+        display: none;
+    }
+}

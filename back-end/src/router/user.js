@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { signup , signin, dashboard, updateUser, deleteUser, getUser, getVendor, getRetailer, getAdmin} = require('../controller/user');
+const { signup , vendorsignin, dashboard, updateUser, deleteUser, getUser, getVendor, getRetailer, getAdmin} = require('../controller/user');
 const {requireSignin} = require('../middlewares/index');
 router.post('/registerUser', signup);
-router.post('/signin', signin);
+router.post('/vendorsignin', vendorsignin);
 
 router.post('/dashboard', requireSignin , dashboard);
 
