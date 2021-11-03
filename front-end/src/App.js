@@ -16,6 +16,7 @@ import RetailerLogin from './mainPages/RetailerLogin/index'
 import RetailerRegister from './mainPages/RetailerRegister/index'
 import Verification from './mainPages/verification/Verification';
 import StoreSetup from './mainPages/storeSetup/StoreSetup';
+import AddProduct from './vendor/VendorProduct/AddProduct';
 
 function RouteWrapper({
   component: Component, 
@@ -45,6 +46,8 @@ function App() {
       <RouteWrapper exact path="/about" component= {About} layout= {MainLayout}></RouteWrapper>
       <RouteWrapper exact path="/admin" component= {AdminDashboard} layout= {AdminLayout}></RouteWrapper>
       <RouteWrapper exact  path="/vendor/dashboard" component= {VendorDashboard} layout= {VendorLayout}></RouteWrapper>
+      <RouteWrapper exact  path="/vendor/addproduct" component= {AddProduct} layout= {VendorLayout}></RouteWrapper>
+      
       <RouteWrapper exact  path="/retailer" component= {RetailerDashboard} layout= {RetailerLayout}></RouteWrapper>
     </Switch>
   </BrowserRouter>

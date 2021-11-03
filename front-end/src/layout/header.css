@@ -2,3 +2,14 @@
     background-color: var(--main-bg-light);
     border-bottom: 1px solid gainsboro;
 }
+.header-left{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+.header-right{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+

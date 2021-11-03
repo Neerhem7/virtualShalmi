@@ -1,15 +1,18 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import './header.css'
 const Header = () => {
     return (
         <Container className="header p-2">
-            <div className="header-left p-3">
+            <Row>
+            <Col className="header-left p-4">
                 Dashboard
-            </div>
-            <div className="header-right">
+            </Col>
+            <Col className="header-right p-4">
                 <img alt="img"/>
-            </div>
+            </Col>
+            </Row>
+           
         </Container>
     )
 }
