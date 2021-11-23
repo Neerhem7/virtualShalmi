@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const VendorSetting = () => {
+const RetailerSetting = () => {
   function handlestore(event) {
     event.preventDefault();
   }
@@ -121,4 +121,4 @@ const VendorSetting = () => {
   );
 };
 
-export default VendorSetting;
+export default RetailerSetting;

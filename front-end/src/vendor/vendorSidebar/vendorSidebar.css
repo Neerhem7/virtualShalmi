@@ -43,8 +43,8 @@
     text-transform: capitalize;
 }
 
-.sidebar__item-inner:hover {
-    background-color: white;
+.vsidebar__item-inner:hover {
+    background-color: var(--third-color);
 }
 
 .vsidebar__item-inner.active {

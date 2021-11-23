@@ -7,22 +7,28 @@ const bcrypt = require('bcryptjs');
 
 
 exports.signup = async (req, res)=>{
-    const {name, email, phoneNumber, password, cpassword, role, emailToken, isVerified}= req.body;
+    const {name, email, phoneNumber, password, cpassword, role}= req.body;
     if(!name || !email || !phoneNumber || !password || !cpassword || !role){
         return res.status(422).json({error: "Fill all fileds"});
     }
     try{
         const userExist =  await User.findOne({ email: email});
-        if(userExist){
-            return res.status(422).json({error: "Email already regitered"});
+        if(userExist && userExist.role == role){
+            return res.send({
+                message: "Email Already Exist. Try different Email or Sign In",
+                Already_Exist: true,
+            });
         }
         if(password != cpassword){
-            return res.status(422).json({error: "Password and Confrim password not match"});
+            return res.send({
+                message: "Password and Confirm password not match",
+                Confirm_Password: true,
+            });
         }
-        const user= new User({name, email, phoneNumber, password, role,verify:verifycode});
+        const user= new User({name, email, phoneNumber, password, role});
 
         await user.save()
-        return res.status(201).json({message: "Succesfully registered"});
+        return res.status(201).json({user});
         
     }catch(e){
         return res.status(500).json({error: e});
@@ -30,16 +36,19 @@ exports.signup = async (req, res)=>{
 };
 
 exports.vendorsignin = async (req, res) =>{
-    const {email, password}= req.body;
-    if(!email || !password){
+    const {email, password, role}= req.body;
+    if(!email || !password || !role){
         return res.status(422).json({error: "Fill all fileds"});
     }
     try{
-        const userExist =await User.findOne({ email: email});
-        if(userExist){
-            if(bcrypt.compare(password, userExist.password)){
-                const token = jwt.sign({_id: userExist._id , role: userExist.role}, process.env.JWT_SECERT_KEY,{ expiresIn: '1h'});
-                return res.status(200).json({ token, userExist});
+        const user =await User.findOne({ email: email});
+        if(user){
+            if(bcrypt.compare(password, user.password)){
+                const token = jwt.sign({_id: user._id , role: user.role}, process.env.JWT_SECERT_KEY,{ expiresIn: '1h'});
+                if(user.role == role){
+                    return res.status(200).json({ token, user});
+                }
+                
             }
         }
         return res.status(422).json({error: "email or password is wrong"});

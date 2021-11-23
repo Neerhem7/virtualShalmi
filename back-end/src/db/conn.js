@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 // mongodb+srv://mehr:2000@cluster0.meawe.mongodb.net/virtualshalmi?retryWrites=true&w=majority
-const DB="mongodb+srv://mehr:mehr2000@cluster0.meawe.mongodb.net/VirtualShalmi?retryWrites=true&w=majority";
+const DB=process.env.DATABASE_SECRET_KEY;
 mongoose.connect(DB,{
-    
-    useNewUrlParser: true,
+    useNewUrlParser:true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: true
+    useCreateIndex: true
 }).then(()=>{
     console.log(`connect`)
 }).catch((err)=>{

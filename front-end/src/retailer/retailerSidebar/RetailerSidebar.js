@@ -10,6 +10,7 @@ const SidebarItem = (props) => {
         <div className="rsidebar__item">
             <div className={`rsidebar__item-inner ${active}`}>
                 <i className={props.icon}></i>
+               
                 <span>
                     {props.title}
                 </span>
@@ -24,6 +25,7 @@ const RetailerSidebar = (props) => {
         <div className='rsidebar'>
             <div className="rsidebar__logo">
                 {/* <img src={logo} alt="company logo" /> */}
+                Virtual Shalmi
             </div>
             {
                 sidebar_items.map((item, index) => (

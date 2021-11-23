@@ -5,7 +5,7 @@ import VendorDashboard from './vendor/VendorDashboard/VendorDashboard';
 import AdminDashboard from './admin/AdminDashboard';
 import VendorLayout from './layout/VendorLayout';
 import AdminLayout from './layout/AdminLayout';
-import RetailerDashboard from './retailer/RetailerDashboard';
+import RetailerDashboard from './retailer/retailerDashboard';
 import RetailerLayout from './layout/RetailerLayout';
 import Home from './mainPages/Home';
 import MainLayout from './layout/MainLayout';
@@ -17,7 +17,6 @@ import RetailerRegister from './mainPages/RetailerRegister/index'
 import Verification from './mainPages/verification/Verification';
 import StoreSetup from './mainPages/storeSetup/StoreSetup';
 import AddProduct from './vendor/VendorProduct/AddProduct';
-
 function RouteWrapper({
   component: Component, 
   layout: Layout, 
@@ -42,13 +41,13 @@ function App() {
       <Route exact path="/vendorstoresetup" component={StoreSetup}></Route>
       <Route exact path="/retailerlogin" component={RetailerLogin}></Route>
       <Route exact path="/retailerregister" component={RetailerRegister}></Route>
+      <Route exact path="/verification" component={Verification}></Route>
       <RouteWrapper exact path="/" component= {Home} layout= {MainLayout}></RouteWrapper>
       <RouteWrapper exact path="/about" component= {About} layout= {MainLayout}></RouteWrapper>
-      <RouteWrapper exact path="/admin" component= {AdminDashboard} layout= {AdminLayout}></RouteWrapper>
+      <RouteWrapper exact path="/admin/dashboard" component= {AdminDashboard} layout= {AdminLayout}></RouteWrapper>
       <RouteWrapper exact  path="/vendor/dashboard" component= {VendorDashboard} layout= {VendorLayout}></RouteWrapper>
       <RouteWrapper exact  path="/vendor/addproduct" component= {AddProduct} layout= {VendorLayout}></RouteWrapper>
-      
-      <RouteWrapper exact  path="/retailer" component= {RetailerDashboard} layout= {RetailerLayout}></RouteWrapper>
+      <RouteWrapper exact  path="/retailer/dashboard" component= {RetailerDashboard} layout= {RetailerLayout}></RouteWrapper>
     </Switch>
   </BrowserRouter>
   );

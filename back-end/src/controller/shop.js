@@ -15,7 +15,7 @@ exports.registerShop = (req, res)=>{
         shop.save().then(()=>{
             return res.status(201).json({message: "Succesfully registered"});
         }).catch((err)=>{
-            return res.status(500).json({error: 'eer'});
+            return res.status(500).json({error: err});
         });
     }).catch((err)=>{
         return res.status(500).json({error: err});

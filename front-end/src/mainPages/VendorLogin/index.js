@@ -1,27 +1,29 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "./vendorLogin.css";
 import login_img from "../../assets/images/login.svg";
 import { Link } from "react-router-dom";
-import {login} from "../../action";
-import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const [email, setemail] = useState('');
-  const [password, setpassword] = useState('');
-  const [error, seterror] = useState('');
+  // const dispatch = useDispatch();
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  // const [error, seterror] = useState("");
+  // const auth = useSelector(state => state.auth);
   function handlelogin(event) {
-
     event.preventDefault();
     const user = {
-      email, password
-    }
-    dispatch(login(user));
+      email,
+      password,
+      role :"vendor"
+    };
     console.log(user);
-    setpassword('');
-    setemail('');
-  }
+    setpassword("");
+    setemail("");
+ }
+  // if(auth.authenticate === true){
+  //   return <Redirect  to = {'/vendor/dashboard'}/>
+  // }
   return (
     <div className="">
       <Container className="">
@@ -32,13 +34,27 @@ const Login = () => {
             <p className="mt-3 p-2">Get started selling on Virtual Shalmi</p>
             <Form onSubmit={handlelogin} className="mt-4">
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="email" placeholder="Enter email" value={email} required  onChange={(e)=> setemail(e.target.value)} />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  required
+                  onChange={(e) => setemail(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Control type="password" placeholder="Password" value={password} required onChange={(e)=> setpassword(e.target.value)} />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  required
+                  onChange={(e) => setpassword(e.target.value)}
+                />
                 <Form.Label className="p-2">
-                  <Link><small>Forget Password</small></Link>
+                  <Link>
+                    <small>Forget Password</small>
+                  </Link>
                 </Form.Label>
               </Form.Group>
               <Button variant="primary" className="col-12 mb-3" type="submit">
@@ -64,5 +80,5 @@ const Login = () => {
     </div>
   );
 };
-          
+
 export default Login;

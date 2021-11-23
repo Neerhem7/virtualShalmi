@@ -1,17 +1,28 @@
 [
     {
         "display_name": "Dashboard",
-        "route": "/retailer",
-        "icon": "bx bx-category-alt"
+        "route": "/retailer/dashboard",
+        "icon":"zmdi zmdi-view-dashboard zmdi-hc-lg"
     },
     {
         "display_name": "Order",
-        "route": "/order",
-        "icon": "bx bx-user-pin"
+        "route": "/retailer/order",
+        "icon":"zmdi zmdi-shopping-cart-plus zmdi-hc-lg"
+    },
+   
+    {
+        "display_name": "Review",
+        "route": "/retailer/review",
+        "icon":"zmdi zmdi-comments zmdi-hc-lg"
     },
     {
-        "display_name": "Products",
-        "route": "/products",
-        "icon": "bx bx-package"
+        "display_name": "Setting",
+        "route": "/retailer/setting",
+        "icon":"zmdi zmdi-settings zmdi-hc-lg"
+    },
+    {
+        "display_name": "Logout",
+        "route": "/",
+        "icon":"zmdi zmdi-lock zmdi-hc-lg"
     }
 ]
