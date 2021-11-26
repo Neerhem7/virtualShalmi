@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Card , Table} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import usersData from "../../UserData";
+
 const VendorProduct = () => {
     const getBadge = status => {
         switch (status) {

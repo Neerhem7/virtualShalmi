@@ -13,8 +13,14 @@ const productSchema = new mongoose.Schema({
     status:{
         type: String,
         required: true,
-        enum: ['inStock','outStock','onSale'],
+        enum: ['inStock','outStock'],
         default:'inStock'
+    },
+    onSale:{
+        type: String,
+        required: true,
+        enum: ['no','yes'],
+        default:'no'
     },
     visibility:{
         type: String,

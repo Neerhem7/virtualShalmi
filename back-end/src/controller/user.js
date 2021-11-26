@@ -1,4 +1,5 @@
 const User = require('../models/userSchema');
+const Product = require('../models/productSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 // const sendmail = require('@sendgrid/mail');
@@ -35,10 +36,13 @@ exports.signup = async (req, res)=>{
     }
 };
 
-exports.vendorsignin = async (req, res) =>{
+exports.signin = async (req, res) =>{
     const {email, password, role}= req.body;
     if(!email || !password || !role){
-        return res.status(422).json({error: "Fill all fileds"});
+        return res.send({
+            message: "Fill all fileds",
+            
+        });
     }
     try{
         const user =await User.findOne({ email: email});
@@ -46,21 +50,52 @@ exports.vendorsignin = async (req, res) =>{
             if(bcrypt.compare(password, user.password)){
                 const token = jwt.sign({_id: user._id , role: user.role}, process.env.JWT_SECERT_KEY,{ expiresIn: '1h'});
                 if(user.role == role){
-                    return res.status(200).json({ token, user});
+                    return res.status(200).json({ token, user, User_Exist: true});
                 }
                 
             }
         }
-        return res.status(422).json({error: "email or password is wrong"});
+        return res.send({
+            message: "email or password is wrong",
+            Wrong_User : true
+        });
         
     }catch(e){
         return res.status(500).json({error: e});
     }
 };
+
 exports.dashboard = (req, res)=>{
     res.send({message: "dashboard"});
 };
+exports.vendordashboard =  async (req, res)=>{
+    const {email}= req.body;
+    if(!email){
+        return res.send({
+            message: "Fill all fileds",
+            
+        });
+    }
+    try{
+        const user =await User.findOne({ email: email});
+        if(user){
+            const product = await Product.find({createdBy : user._id })
+            return res.status(200).json({ token, user,product});
+                
+           
+        }
+        return res.send({
+            message: "Sothemthing wrong",
+            Wrong_User : true
+        });
+        
+    }catch(e){
+        return res.status(500).json({error: e});
+    }
+    res.send({message: "dashboard"});
+};
 exports.getUser = async (req, res)=>{
+
     try {
         const user = await User.find({}); 
         res.status(201).json({user});

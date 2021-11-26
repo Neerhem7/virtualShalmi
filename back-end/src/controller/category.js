@@ -6,7 +6,8 @@ function createCategory(categories, parentId =null){
     let category; 
     if(parentId == null){
         category = categories.filter(cat =>cat.parentId == undefined);
-    }else{
+    }
+    else{
         category = categories.filter(cat =>cat.parentId == parentId);
     }
     for( let cate of category){
@@ -40,7 +41,7 @@ exports.addCategory =  async (req,res)=>{
     try {
         const categories = await Category.find({}); 
         const categoryList = createCategory(categories);
-        res.status(201).json({categoryList});
+        res.status(201).json(categoryList);
     } catch (e) {
         return res.status(500).json({error: e});
     }

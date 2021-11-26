@@ -1,9 +1,10 @@
 import React from 'react'
+import MainNavbar  from './MainNavbar'
 
 const MainLayout = ({children}) => {
     return (
         <div>
-            Main layout
+            <MainNavbar/>
             {children}
         </div>
     )

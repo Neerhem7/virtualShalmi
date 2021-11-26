@@ -1,5 +1,6 @@
 import './App.css';
-import React from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import VendorDashboard from './vendor/VendorDashboard/VendorDashboard';
 import AdminDashboard from './admin/AdminDashboard';
@@ -7,7 +8,7 @@ import VendorLayout from './layout/VendorLayout';
 import AdminLayout from './layout/AdminLayout';
 import RetailerDashboard from './retailer/retailerDashboard';
 import RetailerLayout from './layout/RetailerLayout';
-import Home from './mainPages/Home';
+import Shop from './mainPages/Shop';
 import MainLayout from './layout/MainLayout';
 import About from './mainPages/About';
 import VendorLogin from './mainPages/VendorLogin/index';
@@ -17,6 +18,9 @@ import RetailerRegister from './mainPages/RetailerRegister/index'
 import Verification from './mainPages/verification/Verification';
 import StoreSetup from './mainPages/storeSetup/StoreSetup';
 import AddProduct from './vendor/VendorProduct/AddProduct';
+import AdminLogin from './mainPages/AdminLogin/AdminLogin';
+import { UserProvider } from './UserContext';
+
 function RouteWrapper({
   component: Component, 
   layout: Layout, 
@@ -32,9 +36,24 @@ function RouteWrapper({
 }
 
 function App() {
+  const [category, setcategory] = useState([]);
+  const getCategory = () =>{
+    axios.get("http://localhost:8000/category/getCategory")
+    .then((res)=>{
+        setcategory(res.data);
+        console.log(res.data)
+    }).catch((e)=>{
+      console.log(e);
+    })
+  }
+  useEffect(getCategory, []);
   return (
+    <UserProvider value={category}>
+
+    
     <BrowserRouter>
     <Switch>
+    <Route exact path="/adminlogin" component={AdminLogin}></Route>
     <Route exact path="/verification" component={Verification}></Route>
       <Route exact path="/vendorlogin" component={VendorLogin}></Route>
       <Route exact path="/vendorregister" component={VendorRegister}></Route>
@@ -42,7 +61,7 @@ function App() {
       <Route exact path="/retailerlogin" component={RetailerLogin}></Route>
       <Route exact path="/retailerregister" component={RetailerRegister}></Route>
       <Route exact path="/verification" component={Verification}></Route>
-      <RouteWrapper exact path="/" component= {Home} layout= {MainLayout}></RouteWrapper>
+      <RouteWrapper exact path="/" component= {Shop} layout= {MainLayout}></RouteWrapper>
       <RouteWrapper exact path="/about" component= {About} layout= {MainLayout}></RouteWrapper>
       <RouteWrapper exact path="/admin/dashboard" component= {AdminDashboard} layout= {AdminLayout}></RouteWrapper>
       <RouteWrapper exact  path="/vendor/dashboard" component= {VendorDashboard} layout= {VendorLayout}></RouteWrapper>
@@ -50,6 +69,7 @@ function App() {
       <RouteWrapper exact  path="/retailer/dashboard" component= {RetailerDashboard} layout= {RetailerLayout}></RouteWrapper>
     </Switch>
   </BrowserRouter>
+  </UserProvider>
   );
 }
 

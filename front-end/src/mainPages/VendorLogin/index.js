@@ -1,29 +1,40 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "./vendorLogin.css";
+import { useHistory } from "react-router-dom";
 import login_img from "../../assets/images/login.svg";
 import { Link } from "react-router-dom";
-
+import { useFormik } from "formik";
+import axios from "axios";
+import * as Yup from "yup";
 const Login = () => {
-  // const dispatch = useDispatch();
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  // const [error, seterror] = useState("");
-  // const auth = useSelector(state => state.auth);
-  function handlelogin(event) {
-    event.preventDefault();
-    const user = {
-      email,
-      password,
-      role :"vendor"
-    };
-    console.log(user);
-    setpassword("");
-    setemail("");
- }
-  // if(auth.authenticate === true){
-  //   return <Redirect  to = {'/vendor/dashboard'}/>
-  // }
+  const [errormessage, setMessage] = useState();
+  const history = useHistory();
+  const Uservalidation = Yup.object({
+    email: Yup.string().email("Invalid email address").required(),
+    password: Yup.string().required(),
+  });
+  const  formik = useFormik({
+    initialValues: {
+      email : '',
+      password : '',
+      role : 'vendor'
+   },
+   validationSchema: Uservalidation,
+    onSubmit: values =>{
+      axios.post("http://localhost:8000/user/signin", values)
+        .then((response) => {  
+          if(response.data.Wrong_User ){
+            console.log("email or password is wrong ");
+            return setMessage(response.data.message);
+          } 
+          console.log(response.data);
+          localStorage.setItem('token', response.data.token);
+          history.replace("vendor/dashboard");
+        })
+        .catch((e) => console.log("not solve data", e)); 
+       }
+ })
   return (
     <div className="">
       <Container className="">
@@ -32,24 +43,32 @@ const Login = () => {
             {/* <img  className="icon_img" src={user_img} alt="icon"/> */}
             <h1 className="text-center">Vendor Central</h1>
             <p className="mt-3 p-2">Get started selling on Virtual Shalmi</p>
-            <Form onSubmit={handlelogin} className="mt-4">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form  className="mt-4">
+            <div style={{ color: "#B00020" }}>{errormessage}</div>
+              <Form.Group className="mb-3">
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
-                  value={email}
+                  id="email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
                   required
-                  onChange={(e) => setemail(e.target.value)}
                 />
               </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              {formik.touched.email && formik.errors.email ? (
+              <div style={{ color: "#B00020" }}>{formik.errors.email}</div>
+            ) : null}
+              <Form.Group className="mb-3">
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  value={password}
+                  id="password"
+                  name="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
                   required
-                  onChange={(e) => setpassword(e.target.value)}
+                  
                 />
                 <Form.Label className="p-2">
                   <Link>
@@ -57,7 +76,10 @@ const Login = () => {
                   </Link>
                 </Form.Label>
               </Form.Group>
-              <Button variant="primary" className="col-12 mb-3" type="submit">
+              {formik.touched.password && formik.errors.password ? (
+              <div style={{ color: "#B00020" }}>{formik.errors.password}</div>
+            ) : null}
+              <Button variant="primary" className="col-12 mb-3" type="submit" onClick={formik.handleSubmit}>
                 Submit
               </Button>
               <hr></hr>

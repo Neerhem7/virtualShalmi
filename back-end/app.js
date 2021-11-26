@@ -5,13 +5,14 @@ dotenv.config({path:'./config.env'});
 const port= process.env.PORT || 8000;
 const cors = require('cors');
 
-
-
 //routes
+
+
 const userRoutes = require('./src/router/user');
 const shopRoutes = require('./src/router/shop');
 const categoryRoutes = require('./src/router/category');
 const productRoutes = require('./src/router/product');
+
 
 
 
