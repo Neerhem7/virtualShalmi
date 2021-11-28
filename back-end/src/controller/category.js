@@ -23,6 +23,7 @@ function createCategory(categories, parentId =null){
 
 exports.addCategory =  async (req,res)=>{
     try {
+        console.log("add")
         const category = {
             name: req.body.name,
             slug: slugify(req.body.name)

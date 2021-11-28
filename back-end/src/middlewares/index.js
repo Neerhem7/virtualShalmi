@@ -1,46 +1,49 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userSchema');
 const Product = require('../models/productSchema');
-exports.authenticate = async (req,res,next)=>{
-    try{
-        const token = req.headers.authorization.split(" ")[1];
-        console.log(token)
-        const verifytoken = jwt.verify(token , process.env.JWT_SECERT_KEY);
-        const user = await User.findOne({_id: verifytoken._id});
-        if(user){
-            const product = await Product.findOne({createdBy : user._id})
-
-            req.token=token;
-            req.user=user;
-            req.product=product;
+exports.requireSignin = async (req, res, next)=>{
+    console.log("verfiy");
+    try {
+        if(req.headers.authorization){
+            const token = req.headers.authorization.split(" ")[1];
+            const user = jwt.verify(token , process.env.JWT_SECERT_KEY);
+            req.user = user;        
+        }else{
+            return res.send({
+                message: "authorization required",
+                Authenticate : false
+            });
         }
-
-    }catch(e){
-        return res.status(500).json({error: "hreskj"});
+    } catch (error) {
+        return res.send({
+            message: "authorization required",
+            Authenticate : false
+        });
     }
-    next();
-}
-exports.requireSignin = (req, res, next)=>{
-    if(req.headers.authorization){
-        const token = req.headers.authorization.split(" ")[1];
-        const user = jwt.verify(token , process.env.JWT_SECERT_KEY);
-        req.user = user;
-    }else{
-        return res.status(400).json({error: "authorization required"});
-    }
+   
     next();
 }
 
-exports.vendorMiddleware = (req,res, next)=>{
-    if(req.user.role !== 'vendor'){
-        return res.status(400).json({error: "access deined "});
+exports.vendorMiddleware = async (req,res, next)=>{
+    try {
+        console.log("vadmin")
+        if(req.user.role !== 'vendor'){
+            return res.send({
+                message: "aaccess deined",
+                Authenticate : false
+            });
+        }
+    } catch (error) {
+        
     }
+    
 
     next();
 }
 exports.adminMiddleware = (req,res, next)=>{
+    console.log("vadmin")
     if(req.user.role !== 'admin'){
-        return res.status(400).json({error: "access deined "});
+        return res.status(400).json({error: "access deined "});       
     }
     next();
 }

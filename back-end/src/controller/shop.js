@@ -1,23 +1,45 @@
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
 const Shop = require('../models/shopSchema');
-exports.registerShop = (req, res)=>{
-    const { vendorID, name, address, phoneNumber, category }= req.body;
-    if(!vendorID || !name || !address || !phoneNumber || !category){
+exports.registerShop = async (req, res)=>{
+    const { vendorId, name, address, phoneNumber, category, city, country,zipcode }= req.body;
+    if(!vendorId || !name || !address || !phoneNumber || !category || !city || !zipcode|| !country ){
         return res.status(422).json({error: "Fill all fileds"});
     }
-    Shop.findOne({address:address})
-    .then((shopExist)=>{
+    try{
+        const shopExist =  await Shop.findOne({address:address});
         if(shopExist){
-            return res.status(500).json({error: `Already registered: Unique address`});
+                return res.send({
+                    message: "Already Used Address Unique Address Required",
+                    Shop_Exist: true,
+                });
         }
-        const shop = new Shop({vendor:mongoose.Types.ObjectId('615b2ef0459d9cdc6ced1'), name, address, phoneNumber, category });
-        shop.save().then(()=>{
-            return res.status(201).json({message: "Succesfully registered"});
-        }).catch((err)=>{
-            return res.status(500).json({error: err});
-        });
-    }).catch((err)=>{
-        return res.status(500).json({error: err});
-    });
+        
+        const shop = new Shop({vendorId, name, address, phoneNumber, category, city, country, zipcode });
+
+        await shop.save();
+        return res.status(201).json({message: "Succesfully registered", shop});
+        
+    }catch(e){
+        return res.status(500).json({error: e});
+    }
+    // Shop.findOne({address:address})
+    // .then((shopExist)=>{
+    //     if(shopExist){
+    //         return res.send({
+    //             message: "Already Used Address Unique Address Required",
+    //             Shop_Exist: true,
+    //         });
+    //     }
+    //     const shop = new Shop({vendorId, name, address, phoneNumber, category, city, country, zipcode });
+    //     shop.save().then(()=>{
+    //         return res.status(201).json({message: "Succesfully registered", shop});
+    //     }).catch((err)=>{
+    //         return res.status(500).json({error: err});
+    //     });
+    // }).catch((err)=>{
+    //     return res.status(500).json({error: err});
+    // });
+   
+   
 }

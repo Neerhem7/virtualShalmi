@@ -68,21 +68,20 @@ exports.signin = async (req, res) =>{
 exports.dashboard = (req, res)=>{
     res.send({message: "dashboard"});
 };
-exports.vendordashboard =  async (req, res)=>{
-    const {email}= req.body;
-    if(!email){
-        return res.send({
-            message: "Fill all fileds",
-            
-        });
+exports.vendordashboardProduct= async (req, res)=>{
+    const user = req.user;
+    try {
+        const product = await Product.find({createdBy : user._id })
+        return res.status(200).json({ product}); 
+    } catch (error) {
+        
     }
+};
+exports.vendordashboard =  async (req, res)=>{
     try{
-        const user =await User.findOne({ email: email});
+        const user = req.user;
         if(user){
-            const product = await Product.find({createdBy : user._id })
-            return res.status(200).json({ token, user,product});
-                
-           
+            return res.status(200).json({ token, user});        
         }
         return res.send({
             message: "Sothemthing wrong",
@@ -92,7 +91,6 @@ exports.vendordashboard =  async (req, res)=>{
     }catch(e){
         return res.status(500).json({error: e});
     }
-    res.send({message: "dashboard"});
 };
 exports.getUser = async (req, res)=>{
 

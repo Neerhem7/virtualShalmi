@@ -6,7 +6,7 @@ import Customer from '../Customer'
 const AdminRoute = () => {
     return (
         <Switch>
-            <Route path='/' exact component={AdminDashboard}/>
+            <Route path='/admin/dashboard/' exact component={AdminDashboard}/>
             <Route path='/admin/category' component={Category}/>
             <Route path='/customers' component={Customer}/>
          </Switch>

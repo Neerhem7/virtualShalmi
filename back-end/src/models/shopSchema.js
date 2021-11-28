@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const shopSchema = new mongoose.Schema({
-    vendor:{
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    vendorId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
     },
     name: {
         type: String,
@@ -17,6 +18,18 @@ const shopSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    country:{
+        type: String,
+        required: true
+    },
+    city:{
+        type: String,
+        required: true
+    },
+    zipcode:{
+        type: Number,
+        required: true
     },
     category: {
         type: String,

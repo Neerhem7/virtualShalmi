@@ -23,13 +23,13 @@ const MainNavbar = () => {
             className="justify-content-end"
           >
             <Nav className="">
-              <Nav.Link href="#action1">Shop</Nav.Link>
-              <Nav.Link href="#action2">Vendors</Nav.Link>
-              <Nav.Link href="#action3">Sign In</Nav.Link>
-              <Nav.Link href="#action4">Signup</Nav.Link>
+              <Nav.Link href="/">Shop</Nav.Link>
+              <Nav.Link href="/vendors">Vendors</Nav.Link>
+              <Nav.Link href="/retailerlogin">Sign In</Nav.Link>
+              <Nav.Link href="/retailerregister">Signup</Nav.Link>
 
               <Badge bg="danger">
-                <Nav.Link href="#action5">Become a Vendor</Nav.Link>
+                <Nav.Link href="/vendorregister">Become a Vendor</Nav.Link>
               </Badge>
             </Nav>
           </Navbar.Collapse>

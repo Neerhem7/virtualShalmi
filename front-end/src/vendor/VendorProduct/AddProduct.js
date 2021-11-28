@@ -5,12 +5,13 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import { UserConsumer } from "../../UserContext";
+import  { Redirect } from 'react-router-dom'
 const AddProduct = () => {
   const Data = [{ name: "1" }, { name: "2" }];
   const [saleState, setsaleState] = useState(true);
-  const [fileinput, setfileinput] = useState();
-  const [selectedFile, setselectedFile] = useState()
-  const [previewSource, setpreviewSource] = useState()
+  const [fileinput, setfileinput] = useState()
+  const [previewSource, setpreviewSource] = useState();
+  const [productimage, setproductimage] = useState([])
   const [errormessage, setMessage] = useState();
   const history = useHistory();
 
@@ -36,7 +37,6 @@ const AddProduct = () => {
       is: "yes",
       then: Yup.string().required("Enter Sale Start Date"),
     }),
-    
   });
   const formik = useFormik({
     initialValues: {
@@ -53,29 +53,27 @@ const AddProduct = () => {
       DateSaleEnd: "",
       inStock: 0,
       outStock: 0,
-      backOrder: "",
-      productImg: [],
+      backOrder: "false",
+      productimg: [],
       category: "",
-      createdBy: "",
+      createdBy: "615b26e3f1e779cbb49a3294",
     },
     validationSchema: Uservalidation,
     onSubmit: (values) => {
+      if (!previewSource) {
+        return;
+      }
+      formik.values.productimg.push(previewSource);
+      console.log(previewSource);
       console.log(formik.values);
-      // axios
-      //   .post("http://localhost:8000/user/registerUser", values)
-      //   .then((response) => {
-      //     if (response.data.Already_Exist) {
-      //       console.log("already ");
-      //       return setMessage(response.data.message);
-      //     }
-      //     if (response.data.Confirm_Password) {
-      //       console.log("confrim passowrd not match ");
-      //       return setMessage(response.data.message);
-      //     }
-      //     console.log(response.data);
-      //     history.replace("vendor/product");
-      //   })
-      //   .catch((e) => console.log("not solve data", e));
+      axios
+        .post("http://localhost:8000/product/addProduct", formik.values)
+        .then((response) => {
+          console.log(response.data);
+          
+          history.replace('vendor/product');
+        })
+        .catch((e) => console.log("not solve data", e));
     },
   });
   const handlechecked = (e) => {
@@ -95,34 +93,28 @@ const AddProduct = () => {
       formik.values.salePrice = 0;
     }
   };
-  const handleChange= (e)=>{
-      const index = e.target.selectedIndex;
-      const optionElement = e.target.childNodes[index];
-      const optionElementId = optionElement.getAttribute('id');
-      formik.values.category= optionElementId;
-  }
-  const addImage=(e)=>{
-      const file=e.target.files[0];
-      
-      previewFile(file);
-  }
-  const previewFile=(file)=>{
-    
+  const handleChange = (e) => {
+    const index = e.target.selectedIndex;
+    const optionElement = e.target.childNodes[index];
+    const optionElementId = optionElement.getAttribute("id");
+    formik.values.category = optionElementId;
+  };
+  const addImage = (e) => {
+    const file = e.target.files[0];
+
+    previewFile(file);
+  };
+  const previewFile = (file) => {
     const reader = new FileReader();
-   
-      console.log("image")
-      reader.readAsDataURL(file);
-  
-    reader.onloadend=()=>{
-        setpreviewSource(reader.result);
-        console.log(previewSource)
-    }
-  }
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setpreviewSource(reader.result);
+    };
+  };
   return (
     <Container>
       <UserConsumer>
         {(category) => {
-         
           return (
             <Form>
               <Card>
@@ -393,15 +385,22 @@ const AddProduct = () => {
                     <Card.Body>
                       <Form.Group className="mb-3">
                         <Form.Label>Image</Form.Label>
-                        <Form.Control type="file" size="sm" id="productImg" name="productImg" 
+                        <Form.Control
+                          type="file"
+                          size="sm"
+                          id="productImg"
+                          name="productImg"
                           onChange={addImage}
                           value={fileinput}
                         />
                       </Form.Group>
                       {previewSource && (
                         <div className="d-flex justify-content-center">
-                          <img src={previewSource} alt='img' style={{width: "100px"}} ></img>
-
+                          <img
+                            src={previewSource}
+                            alt="img"
+                            style={{ width: "100px" }}
+                          ></img>
                         </div>
                       )}
                     </Card.Body>

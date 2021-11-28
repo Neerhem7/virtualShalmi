@@ -12,15 +12,16 @@ import {
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
-const Verification = () => {
+const Verification = (props) => {
   const history = useHistory();
+  const id = props.match.params.id;
   const  formik = useFormik({
     initialValues: {
       code : '',
    },
     onSubmit: values =>{
       console.log("code", formik.values.code);
-      history.replace('vendor/dashboard');
+      history.replace('/vendorstoresetup/'+id);
     }
  })
   return (

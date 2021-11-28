@@ -36,8 +36,11 @@ const AdminLogin = () => {
             console.log("email or password is wrong ");
             return setMessage(response.data.message);
           } 
-          console.log(response.data);
-          history.replace("admin/dashboard");
+          console.log(response.data.token);
+          console.log(response.data.user._id);
+          const token =response.data.token;
+          localStorage.setItem('token' , token);
+          history.replace("admin/dashboard/"+response.data.user._id);
         })
         .catch((e) => console.log("not solve data", e)); 
        }
@@ -46,7 +49,7 @@ const AdminLogin = () => {
         <Container className="register-container align-middle">
       <Row className="row d-flex justify-content-center">
         <Col className="col-md-6 register">
-          <h3 className="text-center">Vendor Registration</h3>
+          <h3 className="text-center">Admin Login</h3>
           <Form  className="mt-4">
             <div style={{ color: "#B00020" }}>{errormessage}</div>
             <Form.Group className="mb-3" >

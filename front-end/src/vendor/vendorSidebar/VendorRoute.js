@@ -13,9 +13,9 @@ import AddProduct from "../VendorProduct/AddProduct";
 const VendorRoute = () => {
   return (
     <Switch>
-      <Route path="/vendor/dashboard"  component={VendorDashboard} />
-      <Route path="/vendor/product"  component={VendorProduct} />
-      <Route path="/vendor/addproduct" component={AddProduct} />
+      <Route exact path="/vendor/dashboard"  component={VendorDashboard} />
+      <Route exact path="/vendor/product"  component={VendorProduct} />
+      <Route exact path="/vendor/addproduct" component={AddProduct} />
       <Route path="/vendor/order"  component={VendorOrder} />
       <Route path="/vendor/withdraw"  component={VendorWithdraw} />
       <Route path="/vendor/customer"  component={VendorCustomer} />

@@ -1,88 +1,95 @@
-const mongoose = require('mongoose');
-const productSchema = new mongoose.Schema({
+const mongoose = require("mongoose");
+const productSchema = new mongoose.Schema(
+  {
     Sku: {
-        type: String,
-        min: 3,
-        max: 8,
-        require: true
+      type: String,
+      min: 3,
+      max: 8,
+      require: true,
     },
-    name:{
-        type: String,
-        required: true
+    name: {
+      type: String,
+      required: true,
     },
-    status:{
-        type: String,
-        required: true,
-        enum: ['inStock','outStock'],
-        default:'inStock'
+    status: {
+      type: String,
+      required: true,
+      enum: ["inStock", "outStock"],
+      default: "inStock",
     },
-    onSale:{
-        type: String,
-        required: true,
-        enum: ['no','yes'],
-        default:'no'
+    onSale: {
+      type: String,
+      required: true,
+      enum: ["no", "yes"],
+      default: "no",
     },
-    visibility:{
-        type: String,
-        required: true,
-        enum:['yes','no'],
-        default: 'yes'
+    visibility: {
+      type: String,
+      required: true,
+      enum: ["yes", "no"],
+      default: "yes",
     },
-    shortDescription:{
-        type: String,
-        max: 400
+    shortDescription: {
+      type: String,
+      max: 400,
     },
-    Description:{
-        type: String
+    Description: {
+      type: String,
     },
-    price:{
-        type: Number,
-        required: true
+    price: {
+      type: Number,
+      required: true,
     },
-    salePrice:{
-        type: Number
+    salePrice: {
+      type: Number,
     },
-    DateSaleStart:{
-        type: Date,
-        default: new Date()
+    DateSaleStart: {
+      type: Date,
     },
-    DateSaleEnd:{
-        type: Date
+    DateSaleEnd: {
+      type: Date,
     },
-    inStock:{
-        type: Number,
-        required: true
+    inStock: {
+      type: Number,
+      required: true,
     },
-    outStock:{
-        type: Number,
-        required: true
+    outStock: {
+      type: Number,
+      required: true,
     },
-    backOrder:{
-        type: String,
-        enum: ['yes','no'],
-        default: 'yes'
+    backOrder: {
+      type: String,
+      enum: ["true", "false"],
+      default: "true",
     },
-    productImg:[
-        {img: {
-            type: String
-        }}
-    ],
-    category:{type:mongoose.Schema.Types.ObjectId, ref: "User", require: true },
-    reviews:[
-        {
-            userId: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
-            review:{type: String},
-            reviewAt: Date
+    productImg: [
+      {
+        pimg: {
+          type: String,
         }
+      },
+    ],
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true,
+    },
+    reviews: [
+      {
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        review: { type: String },
+        reviewAt: Date,
+      },
     ],
     createdBy: {
-        type: mongoose.Schema.Types.ObjectId, ref: "User"
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    updateAt:  Date
+    updateAt: Date,
+  },
+  { timestamps: true }
+);
 
-
-},{timestamps: true})
-
-const Product = mongoose.model('PRODUCT', productSchema);
+const Product = mongoose.model("PRODUCT", productSchema);
 
 module.exports = Product;

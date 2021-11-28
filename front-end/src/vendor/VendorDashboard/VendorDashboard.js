@@ -1,23 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useLayoutEffect } from "react";
 import { Container, Row, Col, Button, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+
+import  { Redirect } from 'react-router-dom';
 const VendorDashboard = () => {
   const history = useHistory();
-  const callDashboard = () => {
-    const token = localStorage.token;
+  const callDashboard = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
     axios
-      .post("http://localhost:8000/user/vendor/dashboard", token)
+      .get("http://localhost:8000/user/vendor/dashboard", config)
       .then((response) => {
-        console.log(response.data);
-        history.replace("vendor/dashboard");
+        if(!response.data.Authenticate){
+           history.replace('vendorlogin');
+//<Redirect to="/vendorlogin"/>
+          console.log(response.data.Authenticate);
+        }
+        
       })
       .catch((e) => console.log("not solve data", e));
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
+    //check local token or something
     callDashboard();
-  }, []);
+}, []);
+  // useEffect(() => {
+  //   callDashboard();
+  // }, []);
   return (
     <Container>
       <Card>

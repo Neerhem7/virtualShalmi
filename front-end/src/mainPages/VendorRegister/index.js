@@ -19,7 +19,7 @@ const VendorRegister = () => {
   const history = useHistory();
   const Uservalidation = Yup.object({
     email: Yup.string().email("Invalid email address").required(),
-    name: Yup.string().min(3).max(10).required(),
+    name: Yup.string().min(3).required(),
     password: Yup.string()
       .min(8)
       .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, {
@@ -51,7 +51,9 @@ const VendorRegister = () => {
           return setMessage(response.data.message);
         }  
         console.log(response.data);
-        history.replace("verification");
+        const id= response.data.user._id;
+        console.log(id);
+        history.replace("verification/"+id);
       })
       .catch((e) => console.log("not solve data", e)); 
      }

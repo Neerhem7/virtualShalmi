@@ -1,36 +1,80 @@
-const Product = require('../models/productSchema');
-const mongoose = require('mongoose');
-exports.addProduct = async (req, res)=>{
+const Product = require("../models/productSchema");
+const { cloudinary } = require("../Cloudinary");
 
-    //res.status(200).json( {file: req.files, body: req.body});
-    const {Sku, name, status, visibility, shortDescription, Description, price, salePrice, DateSaleStart, 
-    DateSaleEnd, inStock, outStock, category, backOrder} = req.body;
-
-    //var category = mongoose.Types.ObjectId(categoryId);
-    try{
-
-        let productImg = [];
-        if(req.files.length > 0){
-            productImg = req.files.map(file =>{ 
-                return {img : file.filename};
-            })
-        }
-        const product = new Product({Sku, name, status, visibility, shortDescription, Description, price, salePrice, DateSaleStart, 
-            DateSaleEnd, inStock, outStock, backOrder, productImg, category, createdBy: req.user._id});
-        
-        await product.save()
-        return res.status(201).json({ product });
-            
-    }catch(e){
-        return res.status(500).json({error: e});
+exports.addProduct = async (req, res) => {
+  const {
+    Sku,
+    name,
+    status,
+    visibility,
+    shortDescription,
+    Description,
+    price,
+    salePrice,
+    DateSaleStart,
+    DateSaleEnd,
+    inStock,
+    outStock,
+    productimg,
+    category,
+    backOrder,
+    createdBy,
+  } = req.body;
+  try {
+    let productImg = [];
+    if (productimg.length > 0) {
+      productImg = productimg.map(async (pimg) => {
+        // await cloudinary.uploader.
+        // upload(pimg,
+        //     {folder: 'VirtualShalmi/Product', public_id: {name}}, function(error, result){
+        //         console.log(result)
+        //         url=result.url;
+        //     });
+        // console.log(url);
+        return { pimg:pimg};
+      });
     }
 
-}
-exports.getProduct = async (req, res)=>{
-    try {
-        const product = await Product.find({}); 
-        res.status(201).json(product);
-    } catch (e) {
-        return res.status(500).json({error: e});
-    }
-}
+    const product = await new Product({
+      Sku,
+      name,
+      status,
+      visibility,
+      shortDescription,
+      Description,
+      price,
+      salePrice,
+      DateSaleStart,
+      DateSaleEnd,
+      inStock,
+      outStock,
+      backOrder,
+      productImg,
+      category,
+      createdBy,
+    });
+    console.log("produ")
+    await product.save();
+    return res.status(201).json({ product });
+  } catch (e) {
+    return res.status(500).json({ error: e });
+  }
+};
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Product.find({});
+    res.status(201).json(product);
+  } catch (e) {
+    return res.status(500).json({ error: e });
+  }
+};
+exports.getSingleProduct = async (req, res) => {
+  try {
+    const id =req.params.id;
+    console.log(id);
+    const product = await Product.findOne({_id: id});
+    res.status(201).json(product);
+  } catch (e) {
+    return res.status(500).json({ error: e });
+  }
+};
