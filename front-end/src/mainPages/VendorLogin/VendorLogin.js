@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
-const Login = () => {
+const VendorLogin = () => {
   const [errormessage, setMessage] = useState();
   const history = useHistory();
   const Uservalidation = Yup.object({
@@ -103,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default VendorLogin;

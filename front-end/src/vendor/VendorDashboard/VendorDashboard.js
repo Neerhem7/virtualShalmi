@@ -1,12 +1,11 @@
-import React, { useEffect,useLayoutEffect } from "react";
-import { Container, Row, Col, Button, Card, Table } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
-import  { Redirect } from 'react-router-dom';
-const VendorDashboard = () => {
+const VendorDashboard = (props) => {
   const history = useHistory();
+  console.log(props);
   const callDashboard = async () => {
     let config = {
       headers: {
@@ -17,22 +16,19 @@ const VendorDashboard = () => {
     axios
       .get("http://localhost:8000/user/vendor/dashboard", config)
       .then((response) => {
-        if(!response.data.Authenticate){
-           history.replace('vendorlogin');
-//<Redirect to="/vendorlogin"/>
+        if(response.data.Authenticate === false){
           console.log(response.data.Authenticate);
+          history.push('/vendorlogin')
+          //  history.replace('vendorlogin');
+           return; 
         }
         
       })
       .catch((e) => console.log("not solve data", e));
   };
-  useLayoutEffect(() => {
-    //check local token or something
+  useEffect(() => {
     callDashboard();
-}, []);
-  // useEffect(() => {
-  //   callDashboard();
-  // }, []);
+  }, []);
   return (
     <Container>
       <Card>

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Row, Col, Button, Card , Table} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Card , Table} from "react-bootstrap";
+
 const VendorReviews = () => {
     return (
         <Container>

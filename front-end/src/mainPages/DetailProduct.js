@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, Row, Col, Badge } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
+// import { useHistory } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import { useFormik } from "formik";
 import axios from "axios";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 const DetailProduct = (props) => {
   const [product, setProduct] = useState([]);
   const id = props.match.params.id;
@@ -26,13 +26,13 @@ const DetailProduct = (props) => {
       <Card>
         <Row>
           <Col lg={6} md={6} sm={12} className="right-login">
-            <img className="w-100" alt="product image" />
+            <img className="w-100" alt="product" />
           </Col>
           <Col lg={6} md={6} sm={12} className="left-login">
             <Card.Header>
               {product.name}
 
-              {product.onSale == "yes" ? (
+              {product.onSale === "yes" ? (
                 <>
                   {" "}
                   <hr />

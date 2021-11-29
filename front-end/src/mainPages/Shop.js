@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const history = useHistory();
@@ -21,7 +20,7 @@ const Shop = () => {
 
   return (
     <div className="p-4">
-      {products.length == 0 ? (
+      {products.length === 0 ? (
         <div className="justify-content-center">
           <h1>There is no product</h1>{" "}
         </div>

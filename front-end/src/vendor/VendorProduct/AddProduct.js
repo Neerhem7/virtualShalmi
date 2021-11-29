@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Col, Container, Form, Row, Card, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import { UserConsumer } from "../../UserContext";
-import  { Redirect } from 'react-router-dom'
 const AddProduct = () => {
-  const Data = [{ name: "1" }, { name: "2" }];
   const [saleState, setsaleState] = useState(true);
   const [fileinput, setfileinput] = useState()
   const [previewSource, setpreviewSource] = useState();
-  const [productimage, setproductimage] = useState([])
-  const [errormessage, setMessage] = useState();
   const history = useHistory();
 
   const Uservalidation = Yup.object({

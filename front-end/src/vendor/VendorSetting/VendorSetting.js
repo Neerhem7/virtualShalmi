@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const VendorSetting = () => {
   function handlestore(event) {

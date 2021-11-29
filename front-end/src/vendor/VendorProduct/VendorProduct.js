@@ -3,16 +3,7 @@ import { Container, Row, Col, Button, Card , Table} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const VendorProduct = () => {
-    const getBadge = status => {
-        switch (status) {
-          case 'Active': return 'success'
-          case 'Inactive': return 'secondary'
-          case 'Pending': return 'warning'
-          case 'Banned': return 'danger'
-          default: return 'primary'
-        }
-      }
-      const fields = ['name','registered', 'role', 'status']
+   
   return (
     <Container>
       <Card>
