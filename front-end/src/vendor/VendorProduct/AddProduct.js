@@ -52,19 +52,29 @@ const AddProduct = () => {
       backOrder: "false",
       productimg: [],
       category: "",
-      createdBy: "615b26e3f1e779cbb49a3294",
     },
     validationSchema: Uservalidation,
     onSubmit: (values) => {
       if (!previewSource) {
         return;
       }
+      let config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
       formik.values.productimg.push(previewSource);
       console.log(previewSource);
       console.log(formik.values);
       axios
-        .post("http://localhost:8000/product/addProduct", formik.values)
+        .post("http://localhost:8000/product/addProduct", formik.values, config)
         .then((response) => {
+          if(response.data.Authenticate === false){
+            console.log(response.data.Authenticate);
+            history.replace('/vendorlogin');
+            return;
+          }
           console.log(response.data);
           
           history.replace('vendor/product');
@@ -155,7 +165,7 @@ const AddProduct = () => {
                         <Form.Label>Product Short Description</Form.Label>
                         <Form.Control
                           as="textarea"
-                          rows={10}
+                          rows={2}
                           id="shortDescription"
                           name="shortDescription"
                           onChange={formik.handleChange}
@@ -172,7 +182,7 @@ const AddProduct = () => {
                         <Form.Label>Product Description</Form.Label>
                         <Form.Control
                           as="textarea"
-                          rows={2}
+                          rows={10}
                           id="Description"
                           name="Description"
                           onChange={formik.handleChange}

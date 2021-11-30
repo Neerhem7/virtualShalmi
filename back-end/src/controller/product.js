@@ -18,19 +18,19 @@ exports.addProduct = async (req, res) => {
     productimg,
     category,
     backOrder,
-    createdBy,
   } = req.body;
+  const createdBy=req.user._id;
   try {
     let productImg = [];
     if (productimg.length > 0) {
       productImg = productimg.map(async (pimg) => {
-        // await cloudinary.uploader.
-        // upload(pimg,
-        //     {folder: 'VirtualShalmi/Product', public_id: {name}}, function(error, result){
-        //         console.log(result)
-        //         url=result.url;
-        //     });
-        // console.log(url);
+        await cloudinary.uploader.
+        upload(pimg,
+            {folder: 'VirtualShalmi/Product', public_id: {name}}, function(error, result){
+                console.log(result)
+                url=result.url;
+            });
+        console.log(url);
         return { pimg:pimg};
       });
     }
@@ -77,4 +77,13 @@ exports.getSingleProduct = async (req, res) => {
   } catch (e) {
     return res.status(500).json({ error: e });
   }
+};
+exports.getVendorProduct = async (req, res) => {
+  const user= req.user;
+    try {
+        const product = await Product.find({createdBy : user._id })
+        return res.status(200).json(product); 
+    } catch (error) {
+    return res.status(500).json({ error: e })
+    }
 };

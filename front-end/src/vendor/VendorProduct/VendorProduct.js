@@ -1,9 +1,32 @@
-import React from "react";
-import { Container, Row, Col, Button, Card , Table} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 const VendorProduct = () => {
-   
+  const [products, setProducts] = useState([]);
+  const history = useHistory();
+  const getVendorProduct = () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    axios
+      .get("http://localhost:8000/product/getVendorProduct", config)
+      .then((response) => {
+        if (response.data.Authenticate === false) {
+          console.log(response.data.Authenticate);
+          history.replace("/vendorlogin");
+          return;
+        }
+        setProducts(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => console.log("not solve data", e));
+  };
+  useEffect(getVendorProduct, []);
   return (
     <Container>
       <Card>
@@ -62,33 +85,35 @@ const VendorProduct = () => {
           <Table responsive>
             <thead>
               <tr>
-                <th>#</th>
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <th key={index}>Table heading</th>
-                ))}
+                <th>Image</th>
+                <th>Name</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <td key={index}>Table cell {index}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>2</td>
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <td key={index}>Table cell {index}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>3</td>
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <td key={index}>Table cell {index}</td>
-                ))}
-              </tr>
+              {products.length === 0 ? (
+                <div className="justify-content-center">
+                  <h1>There is no product</h1>{" "}
+                </div>
+              ) : (
+                products.map((product) => (
+                  <tr>
+                    <td></td>
+                    <td id={product._id} index={product._id} key={product._id}>
+                      {product.name}
+                    </td>
+                    <td>
+                      <Button variant="outline-success" onClick={(e) => {}}>
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              )}
+             
             </tbody>
           </Table>
+
         </Card.Body>
       </Card>
     </Container>

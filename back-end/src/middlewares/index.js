@@ -24,20 +24,14 @@ exports.requireSignin = async (req, res, next)=>{
     next();
 }
 
-exports.vendorMiddleware = async (req,res, next)=>{
-    try {
-        console.log("vadmin")
+exports.vendorMiddleware =  (req,res, next)=>{
+        console.log("vendor")
         if(req.user.role !== 'vendor'){
             return res.send({
                 message: "aaccess deined",
                 Authenticate : false
             });
         }
-    } catch (error) {
-        
-    }
-    
-
     next();
 }
 exports.adminMiddleware = (req,res, next)=>{

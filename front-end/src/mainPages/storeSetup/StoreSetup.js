@@ -51,7 +51,7 @@ const StoreSetup = (props) => {
           }
           console.log(response.data);
           // <Redirect to="vendor/dashboard"/>
-          history.replace('vendor/dashboard');
+          history.replace('/vendorlogin');
         })
         .catch((e) => console.log("not solve data", e));
     },

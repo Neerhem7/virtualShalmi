@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, Row, Col, Badge } from "react-bootstrap";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { useFormik } from "formik";
 import axios from "axios";
 // import * as Yup from "yup";
 const DetailProduct = (props) => {
   const [product, setProduct] = useState([]);
+  const history = useHistory();
   const id = props.match.params.id;
   console.log(id);
   const getSingleProduct = () => {
@@ -50,15 +51,23 @@ const DetailProduct = (props) => {
                 Regular Price: Rs {product.price}
               </Card.Subtitle>
               <hr></hr>
-
               <Card.Text>{product.Description}</Card.Text>
-
+              <hr />
+              <Button variant="outline-secondary">-</Button> 0{" "}
+              <Button variant="outline-secondary">+</Button>
+              <hr />
               <Card.Link href="#">
                 <Button>Add to Cart</Button>
               </Card.Link>
-              <Card.Link href="#">
-                <Button>CheckOut</Button>
-              </Card.Link>
+            
+                <Button
+                  onClick={(e) => {
+                    history.push("/checkout");
+                  }}
+                >
+                  CheckOut
+                </Button>
+            
             </Card.Body>
           </Col>
         </Row>

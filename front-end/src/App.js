@@ -21,6 +21,7 @@ import VendorPages from "./mainPages/VendorsPage/VendorPages";
 import DetailProduct from "./mainPages/DetailProduct";
 import VendorLogin from "./mainPages/VendorLogin/VendorLogin";
 import VendorRegister from "./mainPages/VendorRegister/VendorRegister";
+import Checkout from "./mainPages/Checkout.js/Checkout";
 
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   return (
@@ -81,6 +82,12 @@ function App() {
             exact
             path="/"
             component={Shop}
+            layout={MainLayout}
+          ></RouteWrapper>
+           <RouteWrapper
+            exact
+            path="/checkout"
+            component={Checkout}
             layout={MainLayout}
           ></RouteWrapper>
           <RouteWrapper

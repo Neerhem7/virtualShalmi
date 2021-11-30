@@ -45,14 +45,16 @@ exports.signin = async (req, res) =>{
         });
     }
     try{
+        
         const user =await User.findOne({ email: email});
         if(user){
-            if(bcrypt.compare(password, user.password)){
+            const match = await bcrypt.compare(password, user.password);
+            console.log(match)
+            if(match){
                 const token = jwt.sign({_id: user._id , role: user.role}, process.env.JWT_SECERT_KEY,{ expiresIn: '1h'});
                 if(user.role == role){
                     return res.status(200).json({ token, user, User_Exist: true});
-                }
-                
+                }  
             }
         }
         return res.send({
@@ -81,7 +83,7 @@ exports.vendordashboard =  async (req, res)=>{
     try{
         const user = req.user;
         if(user){
-            return res.status(200).json({ token, user});        
+            return res.status(200).json({ user});        
         }
         return res.send({
             message: "Sothemthing wrong",

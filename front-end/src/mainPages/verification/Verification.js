@@ -15,13 +15,20 @@ import { useHistory } from "react-router-dom";
 const Verification = (props) => {
   const history = useHistory();
   const id = props.match.params.id;
+  console.log(props.location.state);
+
   const  formik = useFormik({
     initialValues: {
       code : '',
    },
     onSubmit: values =>{
       console.log("code", formik.values.code);
-      history.replace('/vendorstoresetup/'+id);
+      if(props.location.state === 'retailer'){
+        history.replace('//retailerlogin');
+      }else{
+        history.replace('/vendorstoresetup/'+id);
+      }
+     
     }
  })
   return (

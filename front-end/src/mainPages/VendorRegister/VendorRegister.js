@@ -53,7 +53,7 @@ const VendorRegister = () => {
         console.log(response.data);
         const id= response.data.user._id;
         console.log(id);
-        history.replace("verification/"+id);
+        history.replace("verification/"+id, formik.values.role);
       })
       .catch((e) => console.log("not solve data", e)); 
      }
