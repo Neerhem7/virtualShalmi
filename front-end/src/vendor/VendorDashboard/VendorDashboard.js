@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import VendorLayout from "../../layout/VendorLayout";
 const VendorDashboard = (props) => {
+  const [tproduct, settproduct] = useState()
+ const [publish, setpublish] = useState()
+  const [sale, setsale] = useState()
+  const [outstock, setoutstock] = useState() 
   const history = useHistory();
   console.log(props);
   const callDashboard = async () => {
@@ -22,6 +27,10 @@ const VendorDashboard = (props) => {
           //  history.replace('vendorlogin');
            return; 
         }
+        settproduct(response.data.tProduct);
+        setpublish(response.data.publish);
+        setsale(response.data.saleProduct);
+        setoutstock(response.data.outstock);
         
       })
       .catch((e) => console.log("not solve data", e));
@@ -30,6 +39,7 @@ const VendorDashboard = (props) => {
     callDashboard();
   }, []);
   return (
+    <VendorLayout>
     <Container>
       <Card>
         <Card.Body>
@@ -96,19 +106,19 @@ const VendorDashboard = (props) => {
                 <tbody>
                   <tr>
                     <td>Total</td>
-                    <td>1</td>
+                    <td>{tproduct}</td>
                   </tr>
                   <tr>
                     <td>Publish</td>
-                    <td>1</td>
+                    <td>{publish}</td>
                   </tr>
                   <tr>
                     <td>OnSale</td>
-                    <td>1</td>
+                    <td>{sale}</td>
                   </tr>
                   <tr>
                     <td>Out of Stock</td>
-                    <td>1</td>
+                    <td>{outstock}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -117,6 +127,7 @@ const VendorDashboard = (props) => {
         </Col>
       </Row>
     </Container>
+    </VendorLayout>
   );
 };
 

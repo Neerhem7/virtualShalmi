@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, Badge } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 const Shop = () => {
@@ -30,32 +30,46 @@ const Shop = () => {
             <Col>
               <Card key={product.id} value={product.id}>
                 <Card.Img variant="top" />
+
                 <Card.Body>
                   <Card.Title>{product.name}</Card.Title>
+                  {product.productImg[0].pimg}
                   <Card.Text style={{ color: "gray" }}>
                     {product.shortDescription}
                   </Card.Text>
                   <hr />
+                  
+                  <Card.Text style={{ color: "" }}>
+                  {product.onSale === "yes" ? (
+                    <>
+                      {" "}
+                      
+                      <Badge bg="success">Sale</Badge> 
+                      &nbsp;Sale Price : {product.salePrice}
+                      <hr />
+                    </>
+                  ) : (
+                    console.log("no ")
+                  )}  
+                  </Card.Text>
                   <Card.Text style={{ color: "" }}>
                     Price: {product.price}
                   </Card.Text>
 
                   <Row xs={1} md={2} className="justify-content-center">
-                    
-                    <Button variant="outline-secondary" onClick={(e)=>{
-                      history.push('/detailproduct/'+product._id);
-                    }}>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={(e) => {
+                        history.push("/detailproduct/" + product._id);
+                      }}
+                    >
                       <i class="zmdi zmdi-eye"></i>
-                      
                     </Button>
-                   
-                    
+
                     <Button variant="outline-success">
                       <i class="zmdi zmdi-shopping-cart"></i>
                     </Button>
-                    
                   </Row>
-
                 </Card.Body>
               </Card>
             </Col>

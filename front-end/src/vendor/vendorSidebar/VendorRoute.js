@@ -13,7 +13,7 @@ import AddProduct from "../VendorProduct/AddProduct";
 const VendorRoute = () => {
   return (
     <Switch>
-      <Route exact path="/vendor/dashboard"  component={VendorDashboard} />
+      {/* <Route exact path="/vendor/dashboard"  component={VendorDashboard} />
       <Route exact path="/vendor/product"  component={VendorProduct} />
       <Route exact path="/vendor/addproduct" component={AddProduct} />
       <Route path="/vendor/order"  component={VendorOrder} />
@@ -21,7 +21,7 @@ const VendorRoute = () => {
       <Route path="/vendor/customer"  component={VendorCustomer} />
       <Route path="/vendor/review"  component={VendorReviews} />
       <Route path="/vendor/visitstore"  component={VendorStore} />
-      <Route path="/vendor/setting"  component={VendorSetting} />
+      <Route path="/vendor/setting"  component={VendorSetting} /> */}
     </Switch>
   );
 };

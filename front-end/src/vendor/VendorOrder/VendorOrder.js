@@ -53,7 +53,7 @@ const VendorOrder = () => {
             </div>
           </Card.Header>
           <Card.Body>
-            <Table responsive>
+            {/* <Table responsive>
               <thead>
                 <tr>
                   <th>#</th>
@@ -82,7 +82,7 @@ const VendorOrder = () => {
                   ))}
                 </tr>
               </tbody>
-            </Table>
+            </Table> */}
           </Card.Body>
         </Card>
       </Container>

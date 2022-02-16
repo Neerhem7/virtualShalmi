@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import VendorLayout from "../../layout/VendorLayout";
 const VendorProduct = () => {
   const [products, setProducts] = useState([]);
   const history = useHistory();
@@ -28,6 +29,7 @@ const VendorProduct = () => {
   };
   useEffect(getVendorProduct, []);
   return (
+    <VendorLayout>
     <Container>
       <Card>
         <Card.Header style={{ fontWeight: "bold" }}>
@@ -87,6 +89,10 @@ const VendorProduct = () => {
               <tr>
                 <th>Image</th>
                 <th>Name</th>
+                <th>Price</th>
+                <th>InStock</th>
+                <th>On Sale</th>
+                <th>Sale Price</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -97,14 +103,26 @@ const VendorProduct = () => {
                 </div>
               ) : (
                 products.map((product) => (
-                  <tr>
+                  <tr id={product._id} index={product._id} key={product._id}>
                     <td></td>
-                    <td id={product._id} index={product._id} key={product._id}>
+                    <td >
                       {product.name}
+                    </td>
+                    <td >
+                      {product.price}
+                    </td>
+                    <td >
+                      {product.inStock}
+                    </td>
+                    <td >
+                      {product.onSale}
+                    </td>
+                    <td >
+                      {product.salePrice}
                     </td>
                     <td>
                       <Button variant="outline-success" onClick={(e) => {}}>
-                        <i class="zmdi zmdi-shopping-cart"></i>
+                      <i class="zmdi zmdi-eye"></i>
                       </Button>
                     </td>
                   </tr>
@@ -117,6 +135,7 @@ const VendorProduct = () => {
         </Card.Body>
       </Card>
     </Container>
+    </VendorLayout>
   );
 };
 

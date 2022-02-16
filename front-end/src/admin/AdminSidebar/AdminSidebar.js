@@ -23,6 +23,7 @@ const AdminSidebar = (props) => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
+                Virtual Shalmi
                 {/* <img src={logo} alt="company logo" /> */}
             </div>
             {

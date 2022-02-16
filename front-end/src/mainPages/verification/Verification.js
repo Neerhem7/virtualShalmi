@@ -24,7 +24,7 @@ const Verification = (props) => {
     onSubmit: values =>{
       console.log("code", formik.values.code);
       if(props.location.state === 'retailer'){
-        history.replace('//retailerlogin');
+        history.replace('/retailerlogin');
       }else{
         history.replace('/vendorstoresetup/'+id);
       }

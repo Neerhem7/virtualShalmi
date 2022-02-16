@@ -411,7 +411,7 @@ const AddProduct = () => {
                       )}
                     </Card.Body>
                   </Card>
-                  <Card>
+                  {/* <Card>
                     <Card.Header>Product Gallery</Card.Header>
                     <Card.Body>
                       <Form.Group
@@ -422,7 +422,7 @@ const AddProduct = () => {
                         <Form.Control type="file" size="sm" multiple />
                       </Form.Group>
                     </Card.Body>
-                  </Card>
+                  </Card> */}
                 </Col>
               </Row>
             </Form>

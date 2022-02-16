@@ -22,6 +22,14 @@ import DetailProduct from "./mainPages/DetailProduct";
 import VendorLogin from "./mainPages/VendorLogin/VendorLogin";
 import VendorRegister from "./mainPages/VendorRegister/VendorRegister";
 import Checkout from "./mainPages/Checkout.js/Checkout";
+import VendorOrder from "./vendor/VendorOrder/VendorOrder";
+import VendorWithdraw from "./vendor/VendorWithdraw/VendorWithdraw";
+import VendorProduct from "./vendor/VendorProduct/VendorProduct";
+import VendorCustomer from "./vendor/VendorCustomer/VendorCustomer";
+import VendorReviews from "./vendor/VendorReviews/VendorReviews";
+import VendorStore from "./vendor/VendorStore/VendorStore";
+import VendorSetting from "./vendor/VendorSetting/VendorSetting";
+import VendorSidebar from "./vendor/vendorSidebar/VendorSidebar";
 
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   return (
@@ -53,7 +61,15 @@ function App() {
     <UserProvider value={category}>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/adminlogin" component={AdminLogin}></Route>
+          <Route exact path="/vendor/dashboard" component={VendorDashboard} />
+          <Route exact path="/vendor/product" component={VendorProduct} />
+          <Route exact path="/vendor/addproduct" component={AddProduct} />
+          <Route exact path="/vendor/order" component={VendorSidebar} />
+          <Route exact path="/vendor/withdraw" component={VendorWithdraw} />
+          <Route exact path="/vendor/customer" component={VendorCustomer} />
+          <Route exact path="/vendor/review" component={VendorReviews} />
+          <Route exact path="/vendor/visitstore" component={VendorStore} />
+          <Route exact path="/vendor/setting" component={VendorSetting} />
           <Route exact path="/verification" component={Verification}></Route>
           <Route exact path="/vendorlogin" component={VendorLogin}></Route>
           <Route
@@ -61,9 +77,10 @@ function App() {
             path="/vendorregister"
             component={VendorRegister}
           ></Route>
+                 <Route exact path="/adminlogin" component={AdminLogin}></Route>
           <Route
             exact
-            path="/vendorstoresetup/:id"
+            path="/vendorstoresetup/"
             component={StoreSetup}
           ></Route>
           <Route exact path="/retailerlogin" component={RetailerLogin}></Route>
@@ -84,7 +101,7 @@ function App() {
             component={Shop}
             layout={MainLayout}
           ></RouteWrapper>
-           <RouteWrapper
+          <RouteWrapper
             exact
             path="/checkout"
             component={Checkout}
@@ -105,7 +122,7 @@ function App() {
 
           <RouteWrapper
             exact
-            path="/admin/dashboard/"
+            path="/admin/dashboard"
             component={AdminDashboard}
             layout={AdminLayout}
           ></RouteWrapper>

@@ -18,6 +18,7 @@ exports.addProduct = async (req, res) => {
     productimg,
     category,
     backOrder,
+    onSale,
   } = req.body;
   const createdBy=req.user._id;
   try {
@@ -30,6 +31,7 @@ exports.addProduct = async (req, res) => {
                 console.log(result)
                 url=result.url;
             });
+            
         console.log(url);
         return { pimg:pimg};
       });
@@ -40,6 +42,7 @@ exports.addProduct = async (req, res) => {
       name,
       status,
       visibility,
+      onSale,
       shortDescription,
       Description,
       price,
@@ -81,7 +84,7 @@ exports.getSingleProduct = async (req, res) => {
 exports.getVendorProduct = async (req, res) => {
   const user= req.user;
     try {
-        const product = await Product.find({createdBy : user._id })
+        const product = await Product.find({createdBy : user._id }).sort({"createdAt":1})
         return res.status(200).json(product); 
     } catch (error) {
     return res.status(500).json({ error: e })

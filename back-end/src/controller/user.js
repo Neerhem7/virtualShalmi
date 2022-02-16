@@ -67,8 +67,21 @@ exports.signin = async (req, res) =>{
     }
 };
 
-exports.dashboard = (req, res)=>{
-    res.send({message: "dashboard"});
+exports.retailerdashboard = async (req, res)=>{
+    try{
+        const user = req.user;
+        if(user){
+            const user = await User.find({_id : user._id }); 
+            return res.status(200).json({ user});        
+        }
+        return res.send({
+            message: "Sothemthing wrong",
+            Wrong_User : true
+        });
+        
+    }catch(e){
+        return res.status(500).json({error: e});
+    }
 };
 exports.vendordashboardProduct= async (req, res)=>{
     const user = req.user;
@@ -83,7 +96,17 @@ exports.vendordashboard =  async (req, res)=>{
     try{
         const user = req.user;
         if(user){
-            return res.status(200).json({ user});        
+            const product = await Product.find({createdBy : user._id }).countDocuments();
+            const publish = await Product.find({createdBy : user._id, visibility:"yes" }).countDocuments();
+            const sale = await Product.find({createdBy : user._id, onSale: "yes" }).countDocuments();
+            const outstock = await Product.find({createdBy : user._id, status: "outStock" }).countDocuments();
+            console.log(outstock);
+            return res.status(200).json({ user,
+                tProduct: product,
+                saleProduct: sale,
+                publish: publish,
+                outstock: outstock
+            });        
         }
         return res.send({
             message: "Sothemthing wrong",
@@ -114,7 +137,8 @@ exports.getAdmin = async (req, res)=>{
 exports.getVendor = async (req, res)=>{
     try {
         const user = await User.find({"role":"vendor"}); 
-        res.status(201).json({user});
+
+        res.status(201).json(user);
     } catch (e) {
         return res.status(500).json({error: e});
     }

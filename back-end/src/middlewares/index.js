@@ -34,6 +34,16 @@ exports.vendorMiddleware =  (req,res, next)=>{
         }
     next();
 }
+exports.retailerMiddleware =  (req,res, next)=>{
+    console.log("retailer")
+    if(req.user.role !== 'retailer'){
+        return res.send({
+            message: "aaccess deined",
+            Authenticate : false
+        });
+    }
+next();
+}
 exports.adminMiddleware = (req,res, next)=>{
     console.log("vadmin")
     if(req.user.role !== 'admin'){
